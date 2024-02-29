@@ -6,12 +6,20 @@ import { getProducts } from "../store/productSlice";
 
 const Product = () => {
   const dispatch = useDispatch();
-  const {data: products } = useSelector(state=> state.products)
+  const {data: products, status } = useSelector(state=> state.products)
   useEffect(() => {
     // api
     // dispatch api
     dispatch(getProducts())
   }, []);
+
+  if(status === 'loading'){
+    return <p>Loading.....</p>
+  }
+
+  if(status === 'error'){
+    return <p>Something is wrong with the fetch</p>
+  }
 
   const addToCart = (product) => {
     //dispatch an add action
