@@ -1,7 +1,9 @@
 import { Nav, Navbar, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { UseSelector, useSelector } from "react-redux";
 
 const NavBarPanel = () => {
+    const cartProducts = useSelector(state => state.cartBag);
   return (
     <div>
       <Navbar expand="lg" className="bg-body-tertiary">
@@ -17,7 +19,7 @@ const NavBarPanel = () => {
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse className="justify-content-end">
             <Navbar.Text>
-                <Nav.Link to="/cart" as={Link}>My Bag 0</Nav.Link>
+                <Nav.Link to="/cart" as={Link}>My Bag {cartProducts.length}</Nav.Link>
             </Navbar.Text>
           </Navbar.Collapse>
         </Container>
